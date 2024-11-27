@@ -19,6 +19,10 @@ import { ProductComponent } from './dialog/product/product.component';
 import { ManageOrderComponent } from './manage-order/manage-order.component';
 import { ViewBillComponent } from './view-bill/view-bill.component';
 import { ManageUserComponent } from './manage-user/manage-user.component';
+import { ViewbooksComponent } from './viewbooks/viewbooks.component';
+import { MyreviewsComponent } from './myreviews/myreviews.component';
+import { AdminBooksComponent } from './admin-books/admin-books.component';
+import { AdminReviewsComponent } from './admin-reviews/admin-reviews.component';
 
 @NgModule({
   imports: [
@@ -42,7 +46,11 @@ import { ManageUserComponent } from './manage-user/manage-user.component';
     ProductComponent,
     ManageOrderComponent,
     ViewBillComponent,
-    ManageUserComponent    
+    ManageUserComponent,
+    ViewbooksComponent,
+    MyreviewsComponent,
+    AdminBooksComponent,
+    AdminReviewsComponent    
   ]
 })
 export class MaterialComponentsModule {}

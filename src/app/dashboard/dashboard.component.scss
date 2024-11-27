@@ -71,6 +71,10 @@ body {
   .button:hover {
     background-color: #555;
   }
+
+  p {
+    margin: 8px;
+  }
   
   @media screen and (max-width: 650px) {
     .column {

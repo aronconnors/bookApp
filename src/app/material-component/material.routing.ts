@@ -6,10 +6,29 @@ import { ManageProductComponent } from './manage-product/manage-product.componen
 import { ManageOrderComponent } from './manage-order/manage-order.component';
 import { ViewBillComponent } from './view-bill/view-bill.component';
 import { ManageUserComponent } from './manage-user/manage-user.component';
+import { ViewbooksComponent } from './viewbooks/viewbooks.component';
+import { AdminBooksComponent } from './admin-books/admin-books.component';
+import { AdminReviewsComponent } from './admin-reviews/admin-reviews.component';
 
 
 
 export const MaterialRoutes: Routes = [
+    {
+        path:'adminBook',
+        component:AdminBooksComponent,
+        canActivate:[RouteGuardService],
+        data:{
+            expectedRole:['admin']
+        }
+    },
+    {
+        path:'adminReviews',
+        component:AdminReviewsComponent,
+        canActivate:[RouteGuardService],
+        data:{
+            expectedRole:['admin']
+        }
+    },
     {
         path:'category',
         component:ManageCategoryComponent,
@@ -40,6 +59,30 @@ export const MaterialRoutes: Routes = [
         canActivate:[RouteGuardService],
         data:{
             expectedRole:['admin']
+        }
+    },
+    {
+        path:'bill',
+        component:ViewBillComponent,
+        canActivate:[RouteGuardService],
+        data:{
+            expectedRole:['user']
+        }
+    },
+    {
+        path:'book',
+        component:ViewbooksComponent,
+        canActivate:[RouteGuardService],
+        data:{
+            expectedRole:['user']
+        }
+    },
+    {
+        path:'myreviews',
+        component:ViewbooksComponent,
+        canActivate:[RouteGuardService],
+        data:{
+            expectedRole:['user']
         }
     }
 ];
