@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
@@ -8,29 +8,40 @@ import { GlobalConstants } from 'src/app/shared/global-constants';
 import { ConfirmationComponent } from '../dialog/confirmation/confirmation.component';
 import { ViewBillProductsComponent } from '../dialog/view-bill-products/view-bill-products.component';
 import { MatTableDataSource } from '@angular/material/table';
+import { animate, state, style, transition, trigger } from '@angular/animations';
 
 @Component({
   selector: 'app-viewbooks',
   templateUrl: './viewbooks.component.html',
-  styleUrls: ['./viewbooks.component.scss']
+  styleUrls: ['./viewbooks.component.scss'],
+  animations: [
+    trigger('detailExpand', [
+      state('collapsed', style({ height: '0px', minHeight: '0' })),
+      state('expanded', style({ height: '*' })),
+      transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
+    ]),
+  ],
 })
 export class ViewbooksComponent implements OnInit {
-  displayedColumns: string[] = ['title', 'isbn10', 'published_year', 'average_rating'];
+  displayedColumns: string[] = ['title', 'authors', 'categories', 'published_year'];
+  innerDisplayedColumns: string[] = ['username', 'date', 'rating', 'view'];
+  expandedElement!: any | null;
   dataSource:any;
   responseMessage:any;
 
   constructor(private bookService:BookService,
+    private cd: ChangeDetectorRef,
     private ngxService:NgxUiLoaderService,
     private dialog:MatDialog,
     private snackbarService:SnackbarService,
     private router:Router) { }
 
     ngOnInit(): void {
-      //this.ngxService.start();
     }
   
     tableData(value:string){
       var query = { search: value };
+      this.ngxService.start();
       this.bookService.searchBooks(query).subscribe((response:any)=>{
         this.ngxService.stop();
         this.dataSource = new MatTableDataSource(response);
@@ -45,8 +56,14 @@ export class ViewbooksComponent implements OnInit {
         this.snackbarService.openSnackBar(this.responseMessage,GlobalConstants.error);
       })
     }
+
+    toggleRow(element: any) {
+      element ?
+        (this.expandedElement = this.expandedElement === element ? null : element) : null;
+      this.cd.detectChanges();
+    }
   
-    handleViewAction(values:any){
+   /*handleViewAction(values:any){
       const dialogConfig = new MatDialogConfig();
       dialogConfig.data ={
         data:values
@@ -56,7 +73,11 @@ export class ViewbooksComponent implements OnInit {
       this.router.events.subscribe(()=>{
         dialogRef.close();
       })
-    }
+    }*/
+
+    handleDeleteAction(event: Event, values: any){}
+    handleEditAction(event: Event, values: any){}
+    handleViewAction(event: any, expense: any, dept: string, name: string){}
     
   }
   

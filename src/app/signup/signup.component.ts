@@ -25,9 +25,7 @@ export class SignupComponent implements OnInit {
 
   ngOnInit(): void {
     this.signupForm = this.formBuilder.group({
-      name:[null,[Validators.required,Validators.pattern(GlobalConstants.nameRegex)]],
-      email:[null,[Validators.required,Validators.pattern(GlobalConstants.emailRegex)]],
-      contactNumber:[null,[Validators.required,Validators.pattern(GlobalConstants.contactNumberRegex)]],
+      username:[null,[Validators.required,Validators.pattern(GlobalConstants.nameRegex)]],
       password:[null,[Validators.required]],
     })
   }
@@ -36,9 +34,7 @@ export class SignupComponent implements OnInit {
     this.ngxService.start();
     var formData = this.signupForm.value;
     var data = {
-      name: formData.name,
-      email: formData.email,
-      contactNumber: formData.contactNumber,
+      username: formData.username,
       password: formData.password
     }
     this.userService.signup(data).subscribe((response:any)=>{

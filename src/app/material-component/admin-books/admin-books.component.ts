@@ -15,7 +15,7 @@ import { BookService } from 'src/app/services/book.service';
   styleUrls: ['./admin-books.component.scss']
 })
 export class AdminBooksComponent implements OnInit {
-  displayedColumns: string[] = ['name', 'email', 'contactNumber', 'paymentMethod', 'total', 'view'];
+  displayedColumns: string[] = ['title', 'authors', 'categories', 'published_year', 'action'];
   dataSource:any;
   responseMessage:any;
 
@@ -31,7 +31,7 @@ export class AdminBooksComponent implements OnInit {
     }
   
     tableData(){
-      this.bookService.getBills().subscribe((response:any)=>{
+      this.bookService.getBooks().subscribe((response:any)=>{
         this.ngxService.stop();
         this.dataSource = new MatTableDataSource(response);
       },(error:any)=>{
@@ -62,6 +62,8 @@ export class AdminBooksComponent implements OnInit {
         dialogRef.close();
       })
     }
+
+    handleAddAction(){}
   
     downloadReportAction(values:any){
       this.ngxService.start();

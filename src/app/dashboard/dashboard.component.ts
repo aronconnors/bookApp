@@ -17,14 +17,14 @@ export class DashboardComponent implements AfterViewInit {
 	constructor(private dashboardService:DashboardService,
 		private ngxService:NgxUiLoaderService,
 		private snackbarService:SnackbarService) {
-			//this.ngxService.start();
-			//this.dashboardData();
+			this.ngxService.start();
+			this.dashboardData();
 	}
 
-	/*dashboardData(){
-		this.dashboardService.getDetails().subscribe((response:any)=>{
+	dashboardData(){
+		this.dashboardService.getUser().subscribe((response:any)=>{
 			this.ngxService.stop();
-			this.data = response;
+			this.data = response[0].username;
 		},(error:any)=>{
 			this.ngxService.stop();
 			console.log(error);
@@ -36,5 +36,5 @@ export class DashboardComponent implements AfterViewInit {
 			}
 			this.snackbarService.openSnackBar(this.responseMessage,GlobalConstants.error);
 		})
-	}*/
+	}
 }

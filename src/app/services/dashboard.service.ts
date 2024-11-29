@@ -10,7 +10,7 @@ export class DashboardService {
 
   constructor(private httpClient:HttpClient) { }
 
-  getDetails(){
-    return this.httpClient.get(this.url + "/dashboard/details/");
+  getUser(){
+    return this.httpClient.get(this.url + "/user/getUser/");
   }
 }

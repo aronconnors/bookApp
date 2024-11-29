@@ -11,7 +11,7 @@ import { GlobalConstants } from 'src/app/shared/global-constants';
   styleUrls: ['./manage-user.component.scss']
 })
 export class ManageUserComponent implements OnInit {
-  displayedColumns: string[] = ['name', 'email', 'contactNumber', 'status'];
+  displayedColumns: string[] = ['username', 'role', 'status'];
   dataSource:any;
   responseMessage:any;
 
@@ -25,7 +25,7 @@ export class ManageUserComponent implements OnInit {
   }
 
   tableData(){
-    this.userService.getUsers().subscribe((response:any)=>{
+    this.userService.adminGetUsers().subscribe((response:any)=>{
       this.ngxService.stop();
       this.dataSource = new MatTableDataSource(response);
     },(error:any)=>{

@@ -25,6 +25,18 @@ export class ReviewService {
     return this.httpClient.get(this.url+"/bill/getBills/");
   }
 
+  getReviews(){
+    return this.httpClient.get(this.url+"/user/getReviews/");
+  }
+
+  adminGetReviews(data:any){
+    return this.httpClient.post(this.url+
+      "/user/adminGetReviews/",data,{
+        headers: new HttpHeaders().set('Content-Type', "application/json")
+      }
+    )
+  }
+
   delete(id:any){
     return this.httpClient.delete(this.url+"/bill/delete/"+id,{
       headers:new HttpHeaders().set('Content-Type',"application/json")

@@ -1,7 +1,64 @@
-mat-card{
-    padding: 20px;
-}
-
-table{
+table {
     width: 100%;
-}
+  }
+  
+  tr.example-detail-row {
+    height: 0;
+  }
+  
+  tr.example-element-row:not(.example-expanded-row):hover {
+    background: #777;
+  }
+  
+  tr.example-element-row:not(.example-expanded-row):active {
+    background: #efefef;
+  }
+  
+  .example-element-row td {
+    border-bottom-width: 0;
+  }
+  
+  .example-element-detail {
+    overflow: hidden;
+    display: flex;
+    
+  }
+  
+  .inner-table {
+    width: 100%;
+    margin: 10px;
+  }
+  
+  .inner-table mat-form-field {
+    margin-top: 15px;
+    width: 100%;
+  }
+  
+  .example-element-row {
+    cursor: pointer;
+  }
+  
+  .example-expanded-row {
+    font-weight: bold;
+  }
+  
+  .action-link {
+    text-align: center;
+  }
+  
+  .float-right{
+    float: right;
+  }
+  
+  mat-card{
+    padding: 20px;
+  }
+  
+  table{
+    width: 100%;
+  }
+
+  .inner-table {
+    margin-bottom: 50px;
+  }
+  

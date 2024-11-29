@@ -15,7 +15,7 @@ import { MatTableDataSource } from '@angular/material/table';
   styleUrls: ['./myreviews.component.scss']
 })
 export class MyreviewsComponent implements OnInit {
-  displayedColumns: string[] = ['name', 'email', 'contactNumber', 'paymentMethod', 'total', 'view'];
+  displayedColumns: string[] = ['title', 'rating', 'timestamp', 'view'];
   dataSource:any;
   responseMessage:any;
   constructor(private reviewService:ReviewService,
@@ -30,9 +30,10 @@ export class MyreviewsComponent implements OnInit {
   }
 
   tableData(){
-    this.reviewService.getBills().subscribe((response:any)=>{
+    this.reviewService.getReviews().subscribe((response:any)=>{
       this.ngxService.stop();
-      this.dataSource = new MatTableDataSource(response);
+      console.log(response[0].reviews)
+      this.dataSource = new MatTableDataSource(response[0].reviews);
     },(error:any)=>{
       this.ngxService.stop();
       if(error.error?.message){
