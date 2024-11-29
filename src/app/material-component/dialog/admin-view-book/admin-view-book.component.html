@@ -1,0 +1,38 @@
+<mat-toolbar color="primary">
+    <mat-toolbar-row fxLayout="row">
+        <span class="title-center">View Book</span>
+        <span class="spacer"></span>
+        <button class="mat-dialog-close" mat-icon-button mat-dialog-close>
+            <mat-icon>cancel</mat-icon>
+        </button>
+    </mat-toolbar-row>
+</mat-toolbar>
+
+<mat-dialog-content class="mat-typography">
+    <table id="customers">
+        <img src="{{data.thumbnail}}" style="align-items: center;">
+        <table id="project">
+            <tr>
+                <td colspan="3"><b>Title:</b> {{data.title}}</td>
+            </tr>
+            <tr>
+                <td colspan="2"><b>ISBN 13:</b> {{data.isbn13}}</td>
+                <td colspan="2"><b>ISBN 10:</b> {{data.isbn10}}</td>
+            </tr>
+            <tr>
+                <td colspan="3"><b>Categories:</b> {{ data.categories }}</td>
+            </tr>
+            <tr>
+                <td colspan="3"><b>Pages:</b> {{ data.num_pages }}</td>
+            </tr>
+            <tr>
+                <td colspan="3"><b>Description:</b> <br>{{ data.description }}</td>
+            </tr>
+            <br>
+            <tr>
+                <td><b>Total Reviews:</b> <br>{{ data.ratings_count }}</td>
+                <td><b>Average Rating:</b> <br>{{ data.average_rating }}</td>
+            </tr>
+        </table>
+    </table>
+</mat-dialog-content>

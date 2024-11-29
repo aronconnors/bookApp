@@ -23,6 +23,8 @@ import { ViewbooksComponent } from './viewbooks/viewbooks.component';
 import { MyreviewsComponent } from './myreviews/myreviews.component';
 import { AdminBooksComponent } from './admin-books/admin-books.component';
 import { AdminReviewsComponent } from './admin-reviews/admin-reviews.component';
+import { ViewReviewComponent } from './dialog/view-review/view-review.component';
+import { AdminViewBookComponent } from './dialog/admin-view-book/admin-view-book.component';
 
 @NgModule({
   imports: [
@@ -50,7 +52,9 @@ import { AdminReviewsComponent } from './admin-reviews/admin-reviews.component';
     ViewbooksComponent,
     MyreviewsComponent,
     AdminBooksComponent,
-    AdminReviewsComponent    
+    AdminReviewsComponent,
+    ViewReviewComponent,
+    AdminViewBookComponent    
   ]
 })
 export class MaterialComponentsModule {}

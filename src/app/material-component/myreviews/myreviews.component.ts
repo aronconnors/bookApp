@@ -8,6 +8,7 @@ import { GlobalConstants } from 'src/app/shared/global-constants';
 import { ConfirmationComponent } from '../dialog/confirmation/confirmation.component';
 import { ViewBillProductsComponent } from '../dialog/view-bill-products/view-bill-products.component';
 import { MatTableDataSource } from '@angular/material/table';
+import { ViewReviewComponent } from '../dialog/view-review/view-review.component';
 
 @Component({
   selector: 'app-myreviews',
@@ -32,7 +33,6 @@ export class MyreviewsComponent implements OnInit {
   tableData(){
     this.reviewService.getReviews().subscribe((response:any)=>{
       this.ngxService.stop();
-      console.log(response[0].reviews)
       this.dataSource = new MatTableDataSource(response[0].reviews);
     },(error:any)=>{
       this.ngxService.stop();
@@ -57,7 +57,7 @@ export class MyreviewsComponent implements OnInit {
       data:values
     };
     dialogConfig.width = '100%';
-    const dialogRef = this.dialog.open(ViewBillProductsComponent,dialogConfig);
+    const dialogRef = this.dialog.open(ViewReviewComponent,dialogConfig);
     this.router.events.subscribe(()=>{
       dialogRef.close();
     })

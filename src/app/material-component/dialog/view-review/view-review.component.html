@@ -1,0 +1,22 @@
+<mat-toolbar color="primary">
+    <mat-toolbar-row fxLayout="row">
+        <span class="title-center">User Review</span>
+        <span class="spacer"></span>
+        <button class="mat-dialog-close" mat-icon-button mat-dialog-close>
+            <mat-icon>cancel</mat-icon>
+        </button>
+    </mat-toolbar-row>
+</mat-toolbar>
+
+<mat-dialog-content class="mat-typography">
+    <table id="customers">
+        <tr>
+            <td><b>Username:</b> {{data.username}}</td>
+            <td><b>Date:</b> {{ data.timestamp | date:'medium' }}</td>
+            <td><b>Rating:</b> {{data.rating}}</td>
+        </tr>
+        <tr>
+            <td colspan="3"><b>Review:</b><br> {{data.review}}</td>
+        </tr>
+    </table>
+</mat-dialog-content>

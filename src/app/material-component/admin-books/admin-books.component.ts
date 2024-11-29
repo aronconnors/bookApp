@@ -8,6 +8,7 @@ import { ConfirmationComponent } from '../dialog/confirmation/confirmation.compo
 import { ViewBillProductsComponent } from '../dialog/view-bill-products/view-bill-products.component';
 import { MatTableDataSource } from '@angular/material/table';
 import { BookService } from 'src/app/services/book.service';
+import { AdminViewBookComponent } from '../dialog/admin-view-book/admin-view-book.component';
 
 @Component({
   selector: 'app-admin-books',
@@ -57,7 +58,7 @@ export class AdminBooksComponent implements OnInit {
         data:values
       };
       dialogConfig.width = '100%';
-      const dialogRef = this.dialog.open(ViewBillProductsComponent,dialogConfig);
+      const dialogRef = this.dialog.open(AdminViewBookComponent,dialogConfig);
       this.router.events.subscribe(()=>{
         dialogRef.close();
       })

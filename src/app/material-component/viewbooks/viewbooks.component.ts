@@ -9,6 +9,7 @@ import { ConfirmationComponent } from '../dialog/confirmation/confirmation.compo
 import { ViewBillProductsComponent } from '../dialog/view-bill-products/view-bill-products.component';
 import { MatTableDataSource } from '@angular/material/table';
 import { animate, state, style, transition, trigger } from '@angular/animations';
+import { ViewReviewComponent } from '../dialog/view-review/view-review.component';
 
 @Component({
   selector: 'app-viewbooks',
@@ -57,27 +58,28 @@ export class ViewbooksComponent implements OnInit {
       })
     }
 
+    handleAddAction(){}
+
     toggleRow(element: any) {
       element ?
         (this.expandedElement = this.expandedElement === element ? null : element) : null;
       this.cd.detectChanges();
     }
   
-   /*handleViewAction(values:any){
+    handleViewAction(values:any){
       const dialogConfig = new MatDialogConfig();
       dialogConfig.data ={
         data:values
       };
       dialogConfig.width = '100%';
-      const dialogRef = this.dialog.open(ViewBillProductsComponent,dialogConfig);
+      const dialogRef = this.dialog.open(ViewReviewComponent,dialogConfig);
       this.router.events.subscribe(()=>{
         dialogRef.close();
       })
-    }*/
+    }
 
     handleDeleteAction(event: Event, values: any){}
     handleEditAction(event: Event, values: any){}
-    handleViewAction(event: any, expense: any, dept: string, name: string){}
     
   }
   

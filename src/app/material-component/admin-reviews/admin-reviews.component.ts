@@ -10,6 +10,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { ViewBillProductsComponent } from '../dialog/view-bill-products/view-bill-products.component';
 import { UserService } from 'src/app/services/user.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ViewReviewComponent } from '../dialog/view-review/view-review.component';
 
 @Component({
   selector: 'app-admin-reviews',
@@ -84,7 +85,7 @@ export class AdminReviewsComponent implements OnInit {
       data: values
     };
     dialogConfig.width = '100%';
-    const dialogRef = this.dialog.open(ViewBillProductsComponent, dialogConfig);
+    const dialogRef = this.dialog.open(ViewReviewComponent, dialogConfig);
     this.router.events.subscribe(() => {
       dialogRef.close();
     })
