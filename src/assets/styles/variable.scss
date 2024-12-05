@@ -14,9 +14,9 @@ $headingfont: 'Poppins', sans-serif;
 
 /*Material Theme Colors*/
 
-$primary: mat-palette($mat-red, 600);
-$accent: mat-palette($mat-red, 500);
-$warn: mat-palette($mat-red, 500);
+$primary: mat-palette($mat-cyan, 900);
+$accent: mat-palette($mat-cyan, 900);
+$warn: mat-palette($mat-cyan, 900);
 $theme: mat-light-theme($primary, $accent, $warn);
 $background: map-get($theme, background);
 $foreground: map-get($theme, foreground);
@@ -51,7 +51,7 @@ $font-16: 16px;
 
 $light-text: #a6b7bf;
 $themecolor: #1e88e5;
-$themecolor-alt: #e53935;
+$themecolor-alt: #004840;
 $themecolor-dark: #028ee1;
 
 /*bootstrap Color*/

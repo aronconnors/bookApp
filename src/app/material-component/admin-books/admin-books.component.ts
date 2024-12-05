@@ -9,6 +9,7 @@ import { ViewBillProductsComponent } from '../dialog/view-bill-products/view-bil
 import { MatTableDataSource } from '@angular/material/table';
 import { BookService } from 'src/app/services/book.service';
 import { AdminViewBookComponent } from '../dialog/admin-view-book/admin-view-book.component';
+import { BookComponent } from '../dialog/book/book.component';
 
 @Component({
   selector: 'app-admin-books',
@@ -27,12 +28,12 @@ export class AdminBooksComponent implements OnInit {
     private router:Router) { }
 
     ngOnInit(): void {
-      this.ngxService.start();
-      this.tableData();
     }
   
-    tableData(){
-      this.bookService.getBooks().subscribe((response:any)=>{
+    tableData(value:string){
+      var query = { search: value };
+      this.ngxService.start();
+      this.bookService.searchBooks(query).subscribe((response:any)=>{
         this.ngxService.stop();
         this.dataSource = new MatTableDataSource(response);
       },(error:any)=>{
@@ -64,7 +65,44 @@ export class AdminBooksComponent implements OnInit {
       })
     }
 
-    handleAddAction(){}
+    handleAddAction(){
+      const dialogConfig = new MatDialogConfig();
+      dialogConfig.data = {
+        action: 'Add'
+      }
+      dialogConfig.width = "850px";
+      const dialogRef = this.dialog.open(BookComponent,dialogConfig);
+      this.router.events.subscribe(()=>{
+        dialogRef.close();
+      });
+      const sub = dialogRef.componentInstance.onAddBook.subscribe(
+        (response)=>{
+          const inputValue = (document.getElementById('searchInput') as HTMLInputElement).value;
+          this.tableData(inputValue);
+        }
+      )
+    }
+
+    handleEditAction(values:any){
+      const dialogConfig = new MatDialogConfig();
+      dialogConfig.data = {
+        action: 'Edit',
+        bookId: values.bookId,
+        title: values.title,
+        data:values
+      }
+      dialogConfig.width = "850px";
+      const dialogRef = this.dialog.open(BookComponent,dialogConfig);
+      this.router.events.subscribe(()=>{
+        dialogRef.close();
+      });
+      const sub = dialogRef.componentInstance.onEditBook.subscribe(
+        (response)=>{
+          const inputValue = (document.getElementById('searchInput') as HTMLInputElement).value;
+          this.tableData(inputValue);
+        }
+      )
+    }
   
     downloadReportAction(values:any){
       this.ngxService.start();
@@ -101,7 +139,7 @@ export class AdminBooksComponent implements OnInit {
     deleteProduct(id:any){
       this.bookService.delete(id).subscribe((response:any)=>{
         this.ngxService.stop();
-        this.tableData();
+        //this.tableData();
         this.responseMessage = response?.message;
         this.snackbarService.openSnackBar(this.responseMessage,"success");
       },(error:any)=>{

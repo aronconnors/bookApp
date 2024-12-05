@@ -1,0 +1,38 @@
+<mat-toolbar color="primary">
+    <mat-toolbar-row fxLayout="row">
+        <span class="title-center">{{dialogData.action}} Review</span>
+    </mat-toolbar-row>
+</mat-toolbar>
+<mat-dialog-content class="mat-typography">
+    <form [formGroup]="reviewForm">
+        <div fxFlex fxLayout="column">
+            <div fxLayout="row wrap">
+                <mat-form-field appearance="fill" fxFlex>
+                    <mat-label>Rating</mat-label>
+                    <mat-select formControlName="rating" required>
+                        <mat-option *ngFor="let rate of [1, 2, 3, 4, 5]" [value]="rate">
+                            {{ rate }}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="reviewForm.controls.rating.touched && reviewForm.controls.rating.invalid">
+                        <span *ngIf="reviewForm.controls.rating.errors.required">Please provide a rating</span>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <div fxLayout="row wrap">
+                <mat-form-field appearance="fill" fxFlex>
+                    <mat-label>Review</mat-label>
+                    <textarea matInput formControlName="review" rows="6" required></textarea>
+                    <mat-error
+                        *ngIf="reviewForm.controls.review.touched && reviewForm.controls.review.invalid">
+                    </mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+    </form>
+</mat-dialog-content>
+<mat-dialog-actions align="center">
+    <button mat-raised-button color="primary" type="submit" (click)="handleSubmit()"
+        [disabled]="!(reviewForm.valid && reviewForm.dirty)">{{action}}</button>
+    <button mat-raised-button color="primary" mat-dialog-close>Close</button>
+</mat-dialog-actions>

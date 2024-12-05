@@ -10,6 +10,7 @@ import { ViewBillProductsComponent } from '../dialog/view-bill-products/view-bil
 import { MatTableDataSource } from '@angular/material/table';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { ViewReviewComponent } from '../dialog/view-review/view-review.component';
+import { ReviewComponent } from '../dialog/review/review.component';
 
 @Component({
   selector: 'app-viewbooks',
@@ -58,7 +59,25 @@ export class ViewbooksComponent implements OnInit {
       })
     }
 
-    handleAddAction(){}
+    handleAddAction(values:any){
+      const dialogConfig = new MatDialogConfig();
+      dialogConfig.data = {
+        action: 'Add',
+        bookId: values._id,
+        title: values.title
+      }
+      dialogConfig.width = "850px";
+      const dialogRef = this.dialog.open(ReviewComponent,dialogConfig);
+      this.router.events.subscribe(()=>{
+        dialogRef.close();
+      });
+      const sub = dialogRef.componentInstance.onAddReview.subscribe(
+        (response)=>{
+          const inputValue = (document.getElementById('searchInput') as HTMLInputElement).value;
+          this.tableData(inputValue);
+        }
+      )
+    }
 
     toggleRow(element: any) {
       element ?

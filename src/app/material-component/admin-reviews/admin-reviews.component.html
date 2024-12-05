@@ -39,7 +39,7 @@
 
         <ng-container matColumnDef="timestamp">
             <th mat-header-cell *matHeaderCellDef>Date</th>
-            <td mat-cell *matCellDef="let element">{{element.timestamp}}</td>
+            <td mat-cell *matCellDef="let element">{{element.timestamp | date:'medium' }}</td>
         </ng-container>
 
         <ng-container matColumnDef="view">
@@ -49,10 +49,6 @@
                 <button mat-icon-button color="primary" matTooltip="Read Review"
                     (click)="handleViewAction(element)">
                     <mat-icon>visibility</mat-icon>
-                </button>
-                <button mat-icon-button color="primary" matTooltip="Edit Review"
-                    (click)="downloadReportAction(element)">
-                    <mat-icon>edit</mat-icon>
                 </button>
                 <button mat-icon-button color="primary" matTooltip="Delete Review"
                     (click)="handleDeleteAction(element)">

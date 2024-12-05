@@ -5,7 +5,7 @@
 <mat-card>
     <mat-form-field appearance="fill">
         <mat-label>Search</mat-label>
-        <input matInput #input placeholder="Enter search term">
+        <input matInput id="searchInput" #input placeholder="Enter search term">
     </mat-form-field>
     <button mat-flat-button color="primary" (click)="tableData(input.value)">Search</button>
 </mat-card>
@@ -61,7 +61,7 @@
                                 <td><b>Total Reviews:</b> <br>{{ element.ratings_count }}</td>
                                 <td><b>Average Rating:</b> <br>{{ element.average_rating }}</td>
                                 <td>
-                                    <button mat-flat-button color="primary" class="float-right" (click)="handleAddAction()">Add Review</button>
+                                    <button mat-flat-button color="primary" class="float-right" (click)="handleAddAction(element)">Add Review</button>
                                 </td>
                             </tr>
                         </table>

@@ -38,6 +38,13 @@ export class BookService {
     )
   }
 
+  addBook(data:any){
+    return this.httpClient.get(this.url+"/book/getBooks/");
+  }
+  editBook(data:any){
+    return this.httpClient.get(this.url+"/book/getBooks/");
+  }
+
   delete(id:any){
     return this.httpClient.delete(this.url+"/bill/delete/"+id,{
       headers:new HttpHeaders().set('Content-Type',"application/json")

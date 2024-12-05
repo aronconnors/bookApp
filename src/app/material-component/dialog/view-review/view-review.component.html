@@ -11,7 +11,10 @@
 <mat-dialog-content class="mat-typography">
     <table id="customers">
         <tr>
-            <td><b>Username:</b> {{data.username}}</td>
+            <td>
+                <b>{{ data.username ? 'Username:' : 'Title:' }}</b> 
+                {{ data.username || data.title }}
+            </td>
             <td><b>Date:</b> {{ data.timestamp | date:'medium' }}</td>
             <td><b>Rating:</b> {{data.rating}}</td>
         </tr>

@@ -42,11 +42,11 @@ export class ManageUserComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  handleChangeAction(status:any,id:any){
+  handleChangeAction(status:any,values:any){
     this.ngxService.start();
     var data={
       status:status.toString(),
-      id:id
+      data:values
     }
     this.userService.update(data).subscribe((response:any)=>{
       this.ngxService.stop();

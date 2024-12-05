@@ -25,6 +25,8 @@ import { AdminBooksComponent } from './admin-books/admin-books.component';
 import { AdminReviewsComponent } from './admin-reviews/admin-reviews.component';
 import { ViewReviewComponent } from './dialog/view-review/view-review.component';
 import { AdminViewBookComponent } from './dialog/admin-view-book/admin-view-book.component';
+import { ReviewComponent } from './dialog/review/review.component';
+import { BookComponent } from './dialog/book/book.component';
 
 @NgModule({
   imports: [
@@ -54,7 +56,9 @@ import { AdminViewBookComponent } from './dialog/admin-view-book/admin-view-book
     AdminBooksComponent,
     AdminReviewsComponent,
     ViewReviewComponent,
-    AdminViewBookComponent    
+    AdminViewBookComponent,
+    ReviewComponent,
+    BookComponent    
   ]
 })
 export class MaterialComponentsModule {}

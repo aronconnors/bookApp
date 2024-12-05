@@ -9,6 +9,7 @@ import { ConfirmationComponent } from '../dialog/confirmation/confirmation.compo
 import { ViewBillProductsComponent } from '../dialog/view-bill-products/view-bill-products.component';
 import { MatTableDataSource } from '@angular/material/table';
 import { ViewReviewComponent } from '../dialog/view-review/view-review.component';
+import { ReviewComponent } from '../dialog/review/review.component';
 
 @Component({
   selector: 'app-myreviews',
@@ -63,21 +64,22 @@ export class MyreviewsComponent implements OnInit {
     })
   }
 
-  downloadReportAction(values:any){
-    this.ngxService.start();
-    var data = {
-      name:values.name,
-      email:values.email,
-      uuid:values.uuid,
-      contactNumber:values.contactnumber,
-      paymentMethod:values.paymentmethod,
-      totalAmount:values.total,
-      productDetails:values.productdetails
+  handleEditAction(values:any){
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.data = {
+      action: 'Edit',
+      bookId: values.bookId,
+      title: values.title,
+      data:values
     }
-    this.reviewService.getPDF(data).subscribe(
+    dialogConfig.width = "850px";
+    const dialogRef = this.dialog.open(ReviewComponent,dialogConfig);
+    this.router.events.subscribe(()=>{
+      dialogRef.close();
+    });
+    const sub = dialogRef.componentInstance.onEditReview.subscribe(
       (response)=>{
-        //saveAs(response,values.uuid+'.pdf');
-        this.ngxService.stop();
+        this.tableData();
       }
     )
   }
@@ -85,18 +87,18 @@ export class MyreviewsComponent implements OnInit {
   handleDeleteAction(values:any){
     const dialogConfig = new MatDialogConfig();
     dialogConfig.data = {
-      message: 'delete '+values.name+' bill'
+      message: 'delete '+values.title+' review'
     };
     const dialogRef = this.dialog.open(ConfirmationComponent,dialogConfig);
     const sub = dialogRef.componentInstance.onEmitStatusChange.subscribe((response)=>{
       this.ngxService.start();
-      this.deleteProduct(values.id);
+      this.deleteReview(values);
       dialogRef.close();
     })
   }
 
-  deleteProduct(id:any){
-    this.reviewService.delete(id).subscribe((response:any)=>{
+  deleteReview(values:any){
+    this.reviewService.deleteReview(values).subscribe((response:any)=>{
       this.ngxService.stop();
       this.tableData();
       this.responseMessage = response?.message;

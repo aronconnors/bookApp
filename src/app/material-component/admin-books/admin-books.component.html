@@ -5,9 +5,10 @@
 <hr>
 <mat-card>
     <mat-form-field appearance="fill">
-        <mat-label>Filter</mat-label>
-        <input matInput (keyup)="applyFilter($event)" #input>
+        <mat-label>Search</mat-label>
+        <input matInput id="searchInput" #input placeholder="Enter search term">
     </mat-form-field>
+    <button mat-flat-button color="primary" (click)="tableData(input.value)">Search</button>
 </mat-card>
 <hr>
 <div class="responsive_table">
@@ -38,11 +39,8 @@
                 <button mat-icon-button color="primary" matTooltip="View" (click)="handleViewAction(element)">
                     <mat-icon>visibility</mat-icon>
                 </button>
-                <button mat-icon-button color="primary" matTooltip="Download Bill" (click)="downloadReportAction(element)">
-                    <mat-icon>download</mat-icon>
-                </button>
-                <button mat-icon-button color="primary" matTooltip="Delete" (click)="handleDeleteAction(element)">
-                    <mat-icon>delete</mat-icon>
+                <button mat-icon-button color="primary" matTooltip="Delete" (click)="handleEditAction(element)">
+                    <mat-icon>edit</mat-icon>
                 </button>
             </td>
         </ng-container>

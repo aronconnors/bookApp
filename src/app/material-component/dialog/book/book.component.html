@@ -1,0 +1,94 @@
+<mat-toolbar color="primary">
+    <mat-toolbar-row fxLayout="row">
+        <span class="title-center">{{dialogData.action}} Book</span>
+    </mat-toolbar-row>
+</mat-toolbar>
+<mat-dialog-content class="mat-typography">
+    <form [formGroup]="bookForm">
+        <div fxFlex fxLayout="column">
+            <div fxLayout="row wrap">
+                <mat-form-field appearance="fill" fxFlex>
+                    <mat-label>ISBN-13</mat-label>
+                    <input matInput formControlName="isbn13" required>
+                    <mat-error *ngIf="bookForm.controls.isbn13.touched && bookForm.controls.isbn13.invalid">
+                        Please provide a valid ISBN-13.
+                    </mat-error>
+                </mat-form-field>
+            </div>
+    
+            <div fxLayout="row wrap">
+                <mat-form-field appearance="fill" fxFlex>
+                    <mat-label>ISBN-10</mat-label>
+                    <input matInput formControlName="isbn10" required>
+                    <mat-error *ngIf="bookForm.controls.isbn10.touched && bookForm.controls.isbn10.invalid">
+                        Please provide a valid ISBN-10.
+                    </mat-error>
+                </mat-form-field>
+            </div>
+    
+            <div fxLayout="row wrap">
+                <mat-form-field appearance="fill" fxFlex>
+                    <mat-label>Title</mat-label>
+                    <input matInput formControlName="title" required>
+                    <mat-error *ngIf="bookForm.controls.title.touched && bookForm.controls.title.invalid">
+                        Title is required.
+                    </mat-error>
+                </mat-form-field>
+            </div>
+    
+            <div fxLayout="row wrap">
+                <mat-form-field appearance="fill" fxFlex>
+                    <mat-label>Authors</mat-label>
+                    <input matInput formControlName="authors" required>
+                    <mat-error *ngIf="bookForm.controls.authors.touched && bookForm.controls.authors.invalid">
+                        Please provide at least one author.
+                    </mat-error>
+                </mat-form-field>
+            </div>
+    
+            <div fxLayout="row wrap">
+                <mat-form-field appearance="fill" fxFlex>
+                    <mat-label>Categories</mat-label>
+                    <input matInput formControlName="categories">
+                </mat-form-field>
+            </div>
+    
+            <div fxLayout="row wrap">
+                <mat-form-field appearance="fill" fxFlex>
+                    <mat-label>Thumbnail URL</mat-label>
+                    <input matInput formControlName="thumbnail">
+                </mat-form-field>
+            </div>
+    
+            <div fxLayout="row wrap">
+                <mat-form-field appearance="fill" fxFlex>
+                    <mat-label>Description</mat-label>
+                    <textarea matInput formControlName="description" rows="6"></textarea>
+                </mat-form-field>
+            </div>
+    
+            <div fxLayout="row wrap">
+                <mat-form-field appearance="fill" fxFlex>
+                    <mat-label>Published Year</mat-label>
+                    <input matInput formControlName="published_year" type="number">
+                    <mat-error *ngIf="bookForm.controls.published_year.touched && bookForm.controls.published_year.invalid">
+                        Please provide a valid year.
+                    </mat-error>
+                </mat-form-field>
+            </div>
+    
+            <div fxLayout="row wrap">
+                <mat-form-field appearance="fill" fxFlex>
+                    <mat-label>Number of Pages</mat-label>
+                    <input matInput formControlName="num_pages" type="number">
+                </mat-form-field>
+            </div>
+        </div>
+    </form>
+    
+</mat-dialog-content>
+<mat-dialog-actions align="center">
+    <button mat-raised-button color="primary" type="submit" (click)="handleSubmit()"
+        [disabled]="!(bookForm.valid && bookForm.dirty)">{{action}}</button>
+    <button mat-raised-button color="primary" mat-dialog-close>Close</button>
+</mat-dialog-actions>

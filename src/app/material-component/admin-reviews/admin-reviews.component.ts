@@ -110,16 +110,35 @@ export class AdminReviewsComponent implements OnInit {
     )
   }
 
-  handleDeleteAction(values: any) {
+  handleDeleteAction(values:any){
     const dialogConfig = new MatDialogConfig();
     dialogConfig.data = {
-      message: 'delete ' + values.name + ' bill'
+      message: 'delete '+values.title+' review'
     };
-    const dialogRef = this.dialog.open(ConfirmationComponent, dialogConfig);
-    const sub = dialogRef.componentInstance.onEmitStatusChange.subscribe((response) => {
+    const dialogRef = this.dialog.open(ConfirmationComponent,dialogConfig);
+    const sub = dialogRef.componentInstance.onEmitStatusChange.subscribe((response)=>{
       this.ngxService.start();
-      this.deleteProduct(values.id);
+      this.deleteReview(values);
       dialogRef.close();
+    })
+  }
+
+  deleteReview(values:any){
+    const user = this.selectUserForm.controls.user.value._id
+    this.reviewService.adminDeleteReview(values, user).subscribe((response:any)=>{
+      this.ngxService.stop();
+      this.tableData(this.selectUserForm.controls.user.value.username);
+      this.responseMessage = response?.message;
+      this.snackbarService.openSnackBar(this.responseMessage,"success");
+    },(error:any)=>{
+      this.ngxService.stop();
+      if(error.error?.message){
+        this.responseMessage = error.error?.message;
+      }
+      else{
+        this.responseMessage = GlobalConstants.genericError;
+      }
+      this.snackbarService.openSnackBar(this.responseMessage,GlobalConstants.error);
     })
   }
 
