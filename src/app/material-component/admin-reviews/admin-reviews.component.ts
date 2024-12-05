@@ -7,7 +7,6 @@ import { SnackbarService } from 'src/app/services/snackbar.service';
 import { ConfirmationComponent } from '../dialog/confirmation/confirmation.component';
 import { GlobalConstants } from 'src/app/shared/global-constants';
 import { MatTableDataSource } from '@angular/material/table';
-import { ViewBillProductsComponent } from '../dialog/view-bill-products/view-bill-products.component';
 import { UserService } from 'src/app/services/user.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ViewReviewComponent } from '../dialog/view-review/view-review.component';
@@ -91,25 +90,6 @@ export class AdminReviewsComponent implements OnInit {
     })
   }
 
-  downloadReportAction(values: any) {
-    this.ngxService.start();
-    var data = {
-      name: values.name,
-      email: values.email,
-      uuid: values.uuid,
-      contactNumber: values.contactnumber,
-      paymentMethod: values.paymentmethod,
-      totalAmount: values.total,
-      productDetails: values.productdetails
-    }
-    this.reviewService.getPDF(data).subscribe(
-      (response) => {
-        //saveAs(response,values.uuid+'.pdf');
-        this.ngxService.stop();
-      }
-    )
-  }
-
   handleDeleteAction(values:any){
     const dialogConfig = new MatDialogConfig();
     dialogConfig.data = {
@@ -139,25 +119,6 @@ export class AdminReviewsComponent implements OnInit {
         this.responseMessage = GlobalConstants.genericError;
       }
       this.snackbarService.openSnackBar(this.responseMessage,GlobalConstants.error);
-    })
-  }
-
-  deleteProduct(id: any) {
-    
-    this.reviewService.delete(id).subscribe((response: any) => {
-      this.ngxService.stop();
-      this.tableData('user');
-      this.responseMessage = response?.message;
-      this.snackbarService.openSnackBar(this.responseMessage, "success");
-    }, (error: any) => {
-      this.ngxService.stop();
-      if (error.error?.message) {
-        this.responseMessage = error.error?.message;
-      }
-      else {
-        this.responseMessage = GlobalConstants.genericError;
-      }
-      this.snackbarService.openSnackBar(this.responseMessage, GlobalConstants.error);
     })
   }
 }

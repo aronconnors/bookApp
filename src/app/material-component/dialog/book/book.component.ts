@@ -35,7 +35,7 @@ export class BookComponent implements OnInit {
       title:[null,[Validators.required]],
       authors:[null,[Validators.required]],
       categories:[null,[Validators.required]],
-      thumbail:[null,[Validators.required]],
+      thumbnail:[null,[Validators.required]],
       description:[null,[Validators.required]],
       published_year:[null,[Validators.required]],
       num_pages:[null,[Validators.required]],
@@ -84,13 +84,12 @@ export class BookComponent implements OnInit {
       }
       this.snackbarService.openSnackBar(this.responseMessage,GlobalConstants.error);
     })
-
   }
 
   edit(){
     var formData = this.bookForm.value;
     var data = {
-      bookId: this.dialogData.bookId,
+      bookId: this.dialogData.data._id,
       isbn13: formData.isbn13,
       isbn10: formData.isbn10,
       title: formData.title,

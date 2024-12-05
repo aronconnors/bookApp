@@ -5,8 +5,6 @@ import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { BookService } from 'src/app/services/book.service';
 import { SnackbarService } from 'src/app/services/snackbar.service';
 import { GlobalConstants } from 'src/app/shared/global-constants';
-import { ConfirmationComponent } from '../dialog/confirmation/confirmation.component';
-import { ViewBillProductsComponent } from '../dialog/view-bill-products/view-bill-products.component';
 import { MatTableDataSource } from '@angular/material/table';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { ViewReviewComponent } from '../dialog/view-review/view-review.component';
@@ -95,10 +93,6 @@ export class ViewbooksComponent implements OnInit {
       this.router.events.subscribe(()=>{
         dialogRef.close();
       })
-    }
-
-    handleDeleteAction(event: Event, values: any){}
-    handleEditAction(event: Event, values: any){}
-    
+    }    
   }
   

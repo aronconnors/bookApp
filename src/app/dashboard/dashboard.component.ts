@@ -1,8 +1,8 @@
 import { Component, AfterViewInit } from '@angular/core';
-import { DashboardService } from '../services/dashboard.service';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { SnackbarService } from '../services/snackbar.service';
 import { GlobalConstants } from '../shared/global-constants';
+import { UserService } from '../services/user.service';
 
 @Component({
 	selector: 'app-dashboard',
@@ -14,7 +14,7 @@ export class DashboardComponent implements AfterViewInit {
 	data:any;
 	ngAfterViewInit() { }
 
-	constructor(private dashboardService:DashboardService,
+	constructor(private userService:UserService,
 		private ngxService:NgxUiLoaderService,
 		private snackbarService:SnackbarService) {
 			this.ngxService.start();
@@ -22,7 +22,7 @@ export class DashboardComponent implements AfterViewInit {
 	}
 
 	dashboardData(){
-		this.dashboardService.getUser().subscribe((response:any)=>{
+		this.userService.getUser().subscribe((response:any)=>{
 			this.ngxService.stop();
 			this.data = response[0].username;
 		},(error:any)=>{

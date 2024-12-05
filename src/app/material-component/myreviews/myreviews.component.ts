@@ -6,7 +6,6 @@ import { ReviewService } from 'src/app/services/review.service';
 import { SnackbarService } from 'src/app/services/snackbar.service';
 import { GlobalConstants } from 'src/app/shared/global-constants';
 import { ConfirmationComponent } from '../dialog/confirmation/confirmation.component';
-import { ViewBillProductsComponent } from '../dialog/view-bill-products/view-bill-products.component';
 import { MatTableDataSource } from '@angular/material/table';
 import { ViewReviewComponent } from '../dialog/view-review/view-review.component';
 import { ReviewComponent } from '../dialog/review/review.component';
